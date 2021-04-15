@@ -1,0 +1,14 @@
+version: '3.4'
+services:
+  app:
+    build:
+      context: actions
+    volumes:
+    - './actions:/app/actions'
+    expose:
+      - '5055'
+    depends_on:
+      - rasa-production
+
+
+
