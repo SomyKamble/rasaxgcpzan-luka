@@ -1,4 +1,4 @@
-#import pyodbc
+
 import sqlalchemy
 import pymssql
 from sqlalchemy import create_engine
@@ -16,7 +16,7 @@ def activity_count(act):
     #
     # database = "zan&luka"
 
-    engine = create_engine('mssql+pymssql://sqlserver:$So9423637191@34.71.157.91/zan&luka')
+    engine = create_engine('mssql+pymssql://sqlserver:$So9423637191@35.188.186.206/zan&luka')
 
     # engine = create_engine('mssql+pyodbc://' + server + '/' + database + '?trusted_connection=yes&driver=ODBC+Driver+17+for+SQL+Server')
 
@@ -40,3 +40,5 @@ def activity_count(act):
         return "not found"
 
 
+
+print(activity_count("body"))

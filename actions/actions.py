@@ -9,7 +9,7 @@
 import datetime as dt
 from typing import Any, Text, Dict, List
 import requests
-import sqlalchemy
+
 from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
@@ -147,14 +147,38 @@ class Activity(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         act=tracker.get_slot("body")
+        dispatcher.utter_message(text=f"{act}")
         a = activity_count(str(act))
+
         if a is not None:
             print(act)
             a=activity_count(str(act))
             print(a.iloc[0])
             dispatcher.utter_message(text=f"Your Latest {act} details are \n {a.iloc[0]}")
         else:
-            dispatcher.utter_message(text=f"{act}")
+            pass
+            #dispatcher.utter_message(text=f"{act}")
+            #pass
+
+
 
         return []
 
+
+
+class timefrom(Action):
+
+    def name(self) -> Text:
+        return "action_time_from"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        time=tracker.get_slot("time")
+        #last_name = tracker.get_slot("last_name")
+        #remi = serve(first_name,last_name)
+
+        dispatcher.utter_message(text=f"So {time} extracted is {time}")
+
+        return []
